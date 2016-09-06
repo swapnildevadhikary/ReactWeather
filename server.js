@@ -3,10 +3,10 @@ var app=exp1();
 const PORT=process.env.PORT||4000;
 
 app.use(function(req,res,next){
-  if(req.headers['x-forwarded-proto'] === 'http'){
-    next();
-  }else{
+  if(req.headers['x-forwarded-proto'] === 'https'){
     res.redirect('http://'+req.hostname+req.url);
+  }else{
+     next();
   }
 });
 app.use(exp1.static('public'));
